@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const defaultHandler = require('./errorHandler');
-
+const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS
 const vision = require('@google-cloud/vision');
 const clientVision = new vision.ImageAnnotatorClient();
 const language = require('@google-cloud/language');
