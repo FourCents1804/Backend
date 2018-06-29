@@ -1,8 +1,13 @@
 const router = require('express').Router();
 const defaultHandler = require('./errorHandler');
-const GOOGLE_APPLICATION_CREDENTIALS = process.env.GOOGLE_APPLICATION_CREDENTIALS
 const vision = require('@google-cloud/vision');
-const clientVision = new vision.ImageAnnotatorClient();
+const clientVision = new vision.ImageAnnotatorClient({
+  projectId: 'dime-app-208122',
+  credentials: {
+    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLIENT_EMAIL
+  }
+});
 const language = require('@google-cloud/language');
 const clientLanguage = new language.LanguageServiceClient();
 
