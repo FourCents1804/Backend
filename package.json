@@ -14,6 +14,7 @@
     "@google-cloud/language": "^1.2.0",
     "@google-cloud/vision": "^0.20.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "start": "node main.js"
   }
 }

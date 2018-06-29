@@ -6,11 +6,9 @@ const clientVision = new vision.ImageAnnotatorClient();
 const language = require('@google-cloud/language');
 const clientLanguage = new language.LanguageServiceClient();
 
-router.post(
+router.get(
   '/',
   defaultHandler(async (req, res, next) => {
-    console.log(req.body.fileName);
-    // require('fs').writeFile()
     const img = btoa(req.body.fileName);
     const textOnReceipt = await clientVision.textDetection(img);
 
