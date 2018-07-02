@@ -1,34 +1,43 @@
 const router = require('express').Router();
 const defaultHandler = require('./errorHandler');
 const vision = require('@google-cloud/vision');
+const fs = require('fs')
 const clientVision = new vision.ImageAnnotatorClient({
   projectId: 'dime-app-208122',
   credentials: {
-    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    client_email: process.env.GOOGLE_CLIENT_EMAIL
+    private_key: '',
+    client_email: ''
   }
 });
 const language = require('@google-cloud/language');
 const clientLanguage = new language.LanguageServiceClient({
   projectId: 'dime-app-208122',
   credentials: {
-    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    client_email: process.env.GOOGLE_CLIENT_EMAIL
+    private_key:  '',
+    client_email: ''
   }
 });
 
 router.post(
   '/',
   defaultHandler(async (req, res, next) => {
-    // const img = btoa(req.body.fileName);
-    const img = req.body.fileName
-    const textOnReceipt = await clientVision.textDetection(img);
+    console.log('In server')
 
+    let buff = new Buffer(req.body.fileName, 'base64')
+    fs.writeFileSync('file-to-send-to-google.jpeg', buff)
+    const textOnReceipt = await clientVision.textDetection('file-to-send-to-google.jpeg');
+    console.log( textOnReceipt[0].textAnnotations[0].description)
     const elements = textOnReceipt[0].textAnnotations[0].description.split(
       '\n'
     );
     const items = [];
     const prices = [];
+    console.log(elements)
+    // elements.forEach(el => {
+    //   if (el === el.toUpperCase() && !el.match(/\d/)) items.push(el)
+    //   else if ((el.includes('$') && el.length < 9) || (el.includes('.') && el.length < 9)) prices.push(el)
+
+    // })
     elements.forEach(el => {
       if (el.match(/^[A-Za-z]/i)) {
         items.push(el);
@@ -36,7 +45,6 @@ router.post(
         prices.push(el);
       }
     });
-
     const brand = elements[0];
     let summary = {};
     if (brand === 'Walmart') {
@@ -52,7 +60,7 @@ router.post(
       const textContent = await clientLanguage.classifyText({
         document: document
       });
-      summary.category = textContent.categories[0].name.slice(1);
+      summary.category = textContent[0].categories[0].name.slice(1);
       summary.Total = TotalPrice;
       summary.purchasedItems = boughtItems;
     }
@@ -77,7 +85,9 @@ router.post(
       summary.Total = Number(TotalPrice);
       summary.purchasedItems = boughtItems;
     }
-    res.send(summary);
+    console.log(items, prices)
+    res.sendStatus(200)
+    // res.send(summary);
   })
 );
 
