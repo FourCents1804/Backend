@@ -26,8 +26,8 @@ router.post(
     // let buff = Buffer.from(req.body.fileName, 'base64');
     // fs.writeFileSync('file-to-send-to-google.jpeg', buff);
     const textOnReceipt = await clientVision.textDetection(
-      'https://www.google.com/search?q=whole+foods+receipt&rlz=1C5CHFA_enUS797US797&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjQ8N62koHcAhVsqlkKHcq1C_wQ_AUICigB&biw=1198&bih=561#imgrc=08XCUUqHwtuYyM:'
-    );
+      'https://s2.r29static.com//bin/entry/329/x,80/1841807/image.jpg'
+);
     console.log(textOnReceipt[0].textAnnotations[0].description);
     const elements = textOnReceipt[0].textAnnotations[0].description.split(
       '\n'
