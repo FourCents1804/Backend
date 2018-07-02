@@ -22,11 +22,11 @@ router.post(
   '/',
   defaultHandler(async (req, res, next) => {
     console.log('In server');
+    let buff = Buffer.from(req.body.fileName, 'base64').toString('binary')
 
-    // let buff = Buffer.from(req.body.fileName, 'base64');
-    // fs.writeFileSync('file-to-send-to-google.jpeg', buff);
+    fs.writeFileSync('file-to-send-to-google.jpeg', buff);
     const textOnReceipt = await clientVision.textDetection(
-      atob(req.body.fileName)
+      'file-to-send-to-google.jpeg'
 );
     console.log(textOnReceipt[0].textAnnotations[0].description);
     const elements = textOnReceipt[0].textAnnotations[0].description.split(
