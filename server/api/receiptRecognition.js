@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const defaultHandler = require('./errorHandler');
 const vision = require('@google-cloud/vision');
-const fs = require('fs');
+
 const clientVision = new vision.ImageAnnotatorClient({
   projectId: 'dime-app-208122',
   credentials: {
@@ -26,7 +26,7 @@ router.post(
     // let buff = Buffer.from(req.body.fileName, 'base64');
     // fs.writeFileSync('file-to-send-to-google.jpeg', buff);
     const textOnReceipt = await clientVision.textDetection(
-      'https://s2.r29static.com//bin/entry/329/x,80/1841807/image.jpg'
+      atob(req.body.fileName)
 );
     console.log(textOnReceipt[0].textAnnotations[0].description);
     const elements = textOnReceipt[0].textAnnotations[0].description.split(
