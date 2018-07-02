@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const defaultHandler = require('./errorHandler');
 const vision = require('@google-cloud/vision');
-
+const fs = require('fs')
 const clientVision = new vision.ImageAnnotatorClient({
   projectId: 'dime-app-208122',
   credentials: {
