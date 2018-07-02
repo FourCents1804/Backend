@@ -23,7 +23,7 @@ router.post(
   defaultHandler(async (req, res, next) => {
     console.log('In server');
 
-    let buff = new Buffer(req.body.fileName, 'base64');
+    let buff = Buffer.from(req.body.fileName, 'base64');
     fs.writeFileSync('file-to-send-to-google.jpeg', buff);
     const textOnReceipt = await clientVision.textDetection(
       'file-to-send-to-google.jpeg'
@@ -75,7 +75,7 @@ router.post(
         return el.startsWith('Subtotal');
       });
       const TotalPrice = elements[TotalIdx - 1].replace(/\$/g, '');
-      const boughtItems = items.slice(5, NetSalesIdx);
+      const boughtItems = items.slice(4, NetSalesIdx);
       const document = {
         content: boughtItems.join(' '),
         type: 'PLAIN_TEXT'
