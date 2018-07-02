@@ -23,10 +23,10 @@ router.post(
   defaultHandler(async (req, res, next) => {
     console.log('In server');
 
-    let buff = Buffer.from(req.body.fileName, 'base64');
-    fs.writeFileSync('file-to-send-to-google.jpeg', buff);
+    // let buff = Buffer.from(req.body.fileName, 'base64');
+    // fs.writeFileSync('file-to-send-to-google.jpeg', buff);
     const textOnReceipt = await clientVision.textDetection(
-      'file-to-send-to-google.jpeg'
+      'https://www.google.com/search?q=whole+foods+receipt&rlz=1C5CHFA_enUS797US797&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjQ8N62koHcAhVsqlkKHcq1C_wQ_AUICigB&biw=1198&bih=561#imgrc=08XCUUqHwtuYyM:'
     );
     console.log(textOnReceipt[0].textAnnotations[0].description);
     const elements = textOnReceipt[0].textAnnotations[0].description.split(
