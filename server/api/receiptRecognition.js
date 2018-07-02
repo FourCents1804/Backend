@@ -28,7 +28,7 @@ router.post(
     const textOnReceipt = await clientVision.textDetection(
       'file-to-send-to-google.jpeg'
 );
-    console.log(textOnReceiptgi);
+    console.log(textOnReceipt);
     const elements = textOnReceipt[0].textAnnotations[0].description.split(
       '\n'
     );
