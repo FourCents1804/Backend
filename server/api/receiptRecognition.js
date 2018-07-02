@@ -67,7 +67,7 @@ router.post(
       summary.Total = TotalPrice;
       summary.purchasedItems = boughtItems;
     }
-    if (brand === 'WHOLE') {
+    if (brand === 'WHOLE' || brand === 'FOODS') {
       const NetSalesIdx = items.findIndex(el => {
         return el.startsWith('Net Sales');
       });
