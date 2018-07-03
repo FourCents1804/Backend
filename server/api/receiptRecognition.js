@@ -24,7 +24,7 @@ router.post(
     console.log('In server');
     let buff = Buffer.from(req.body.fileName, 'base64')
 
-    await fs.writeFile('file-to-send-to-google.jpeg', buff);
+    await fs.writeFile('file-to-send-to-google.jpeg', buff());
     const textOnReceipt = await clientVision.textDetection(
       'file-to-send-to-google.jpeg'
 );
