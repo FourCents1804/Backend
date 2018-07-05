@@ -1,0 +1,14 @@
+.git
+demos
+dist
+node_modules
+notebooks
+src
+test
+.babelrc
+.eslintrc
+.gitignore
+.npmignore
+index.html
+webpack.config.js
+yarn.lock

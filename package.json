@@ -21,6 +21,15 @@
     "blob": "0.0.4",
     "body-parser": "^1.18.3",
     "btoa": "^1.2.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "keras-js": "file:../keras-js-0.3.0 .tar.gz",
+    "lodash": "^4.17.10",
+    "ndarray": "^1.0.18",
+    "ndarray-ops": "^1.2.2"
+  },
+  "devDependencies": {
+    "glslify-loader": "^1.0.2",
+    "raw-loader": "^0.5.1"
   }
 }
