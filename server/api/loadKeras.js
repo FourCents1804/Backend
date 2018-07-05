@@ -13,7 +13,7 @@ router.post(
       filesystem: true,
       gpu: false
     });
-    console.log('filepath worked!')
+    console.log(req.body.lastThreeDays)
     await model.ready();
     const minConst = -0.00029065;
     const scaleConst = 0.00145323;
