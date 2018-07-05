@@ -8,7 +8,7 @@ router.post(
     console.log('In server')
     const model = new Model({
       filepath:
-      '/server/KerasModelDir/savedModel.bin',
+      '~/server/KerasModelDir/savedModel.bin',
       filesystem: true,
       gpu: false
     });
