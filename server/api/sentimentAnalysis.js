@@ -1,4 +1,4 @@
-const router = require('express').Router();
+/* const router = require('express').Router();
 const language = require('@google-cloud/language');
 const defaultHandler = require('../../errorHandler');
 const clientLanguage = new language.LanguageServiceClient({
@@ -32,3 +32,4 @@ router.post(
 );
 
 module.exports = router
+ */

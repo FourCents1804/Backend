@@ -1,4 +1,4 @@
-const router = require('express').Router();
+/* const router = require('express').Router();
 const defaultHandler = require('../../errorHandler');
 const vision = require('@google-cloud/vision');
 const clientVision = new vision.ImageAnnotatorClient({
@@ -92,3 +92,4 @@ router.get(
 );
 
 module.exports = router;
+ */
