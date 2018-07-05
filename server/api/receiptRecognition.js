@@ -80,7 +80,8 @@ router.get(
       purchasedItems[count] = [item, prices[count]];
     });
     summary.purchasedItems = purchasedItems;
-    summary.total = total;
+    summary.amount = total;
+    summary.date = Date.now()
     if (textContent[0].categories[0]) {
       summary.category = textContent[0].categories[0].name.slice(1);
     } else {

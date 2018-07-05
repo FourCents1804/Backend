@@ -26,10 +26,17 @@ router.post(
     const textContent = await clientLanguage.classifyText({
       document: document
     });
-    console.log(textContent[0].categories[0].name.slice(1))
-    res.send(textContent[0].categories[0].name.slice(1));
+    let classification = ''
+    if (textContent[0].categories[0]) {
+      classification = textContent[0].categories[0].name.slice(1);
+    } else {
+     classification = 'Could Not Retreive Category';
+    }
+
+    res.send(classification);
   })
 );
+
 
 module.exports = router
  */
