@@ -9,7 +9,7 @@ router.post(
     console.log('In server')
     const model = new Model({
       filepath:
-      path.join([__dirname, '..', 'KerasModelDir/savedModel.bin']),
+      path.join(__dirname, '..', 'KerasModelDir/savedModel.bin'),
       filesystem: true,
       gpu: false
     });
