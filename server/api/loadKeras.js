@@ -2,7 +2,7 @@ const router = require('express').Router();
 const defaultHandler = require('../../errorHandler');
 const Model = require('keras-js').Model;
 
-router.get(
+router.post(
   '/',
   defaultHandler(async (req, res, next) => {
     console.log('In server')
