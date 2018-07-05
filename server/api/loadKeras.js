@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const defaultHandler = require('../../errorHandler');
 const Model = require('keras-js').Model;
+const path = require('path')
 
 router.post(
   '/',
@@ -8,7 +9,7 @@ router.post(
     console.log('In server')
     const model = new Model({
       filepath:
-      '~/server/KerasModelDir/savedModel.bin',
+      path.dirname('/server/KerasModelDir/savedModel.bin'),
       filesystem: true,
       gpu: false
     });
