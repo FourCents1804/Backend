@@ -27,7 +27,7 @@ router.post(
       document: document
     });
     let classification = ''
-    if (textContent[0].categories[0]) {
+    if (textContent[0].categories[0].categories[0]) {
       classification = textContent[0].categories[0].name.slice(1);
     } else {
      classification = 'Could Not Retreive Category';
