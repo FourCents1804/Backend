@@ -33,7 +33,6 @@ router.post(
      classification = 'Could Not Retreive Category';
     }
 
-    console.log(textContent[0].categories[0].name.slice(1))
     res.send(classification);
   })
 );
