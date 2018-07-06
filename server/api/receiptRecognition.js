@@ -65,7 +65,7 @@ router.get(
     });
 
     const document = {
-      content: items.join(' '),
+      content: items.join(' ').repeat(10),
       type: 'PLAIN_TEXT'
     };
     const textContent = await clientLanguage.classifyText({
