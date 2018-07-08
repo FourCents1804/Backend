@@ -5,7 +5,7 @@ const router = require('express').Router();
 module.exports = router;
 
 router.use('/receiptRecognition', require('./receiptRecognition'));
-router.use('/languageAnalysis', require('./lauguageAnalysis'));
+router.use('/contentClassification', require('./contentClassification'));
 router.use('/loadKeras', require('./loadKeras'));
 
 router.use((req, res, next) => {

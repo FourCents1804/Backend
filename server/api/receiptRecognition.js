@@ -4,22 +4,16 @@ const vision = require('@google-cloud/vision');
 const clientVision = new vision.ImageAnnotatorClient({
   projectId: 'dime-app-208122',
   credentials: {
-    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(
-      /\\n/g,
-      '\n'
-    ),
-    client_email:  process.env.GOOGLE_CLIENT_EMAIL
+    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLIENT_EMAIL
   }
 });
 const language = require('@google-cloud/language');
 const clientLanguage = new language.LanguageServiceClient({
   projectId: 'dime-app-208122',
   credentials: {
-    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(
-      /\\n/g,
-      '\n'
-    ),
-    client_email:  process.env.GOOGLE_CLIENT_EMAIL
+    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLIENT_EMAIL
   }
 });
 
@@ -33,16 +27,14 @@ router.get(
     const allElements = textOnReceipt[0].textAnnotations[0].description.split(
       '\n'
     );
-    let theIndex
-    for (let j = 0; j < allElements.length ; j++) {
-      // console.log(allElements[j])
-      if ((allElements[j]).includes('Total')) {
-        theIndex = j
-        break
+    let theIndex;
+    for (let j = 0; j < allElements.length; j++) {
+      if (allElements[j].includes('Total')) {
+        theIndex = j;
+        break;
       }
     }
     const elements = allElements.slice(0, theIndex);
-    console.log(elements)
     const items = [];
     const prices = [];
 
@@ -53,7 +45,6 @@ router.get(
         el !== '' &&
         isNaN(el) &&
         el
-
       ) {
         items.push(el);
       } else if (
@@ -81,16 +72,14 @@ router.get(
     });
     summary.purchasedItems = purchasedItems;
     summary.amount = total;
-    summary.date = Date.now()
+    summary.date = Date.now();
     if (textContent[0].categories[0]) {
       summary.category = textContent[0].categories[0].name.slice(1);
     } else {
       summary.category = 'Could Not Retreive Category';
     }
-    console.log(summary);
     res.send(summary);
   })
 );
 
 module.exports = router;
-
