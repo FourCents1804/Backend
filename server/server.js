@@ -4,7 +4,7 @@ const express = require('express');
 
 const app = express();
 
-app.use(bodyParser.json({type: '*/*', limit: '20mb'}));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', require('./api')); // include our routes!
 
